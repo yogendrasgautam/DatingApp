@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     }
 
     this.router.navigate(['/home']);
-    this.alertify.error('You are not authenticated.')
+    this.alertify.error('You are not authenticated.');
   }
 
 }
