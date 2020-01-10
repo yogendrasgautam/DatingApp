@@ -62,7 +62,7 @@
           </tab>
           <tab heading="Edit Photos">
             
-            <p>Photos will go here </p>
+            <app-photo-editor [photos]="user.photos" (updateMemberPhoto)="updateActivePhoto($event)" ></app-photo-editor>
 
           </tab>
           
