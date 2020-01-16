@@ -52,6 +52,11 @@ baseUrl = environment.apiUrl;
         };
 
         this.photos.push(res);
+        if(res.isActive) {
+          this.updateMemberPhoto.emit(photo.url);
+          this.authService.currentUser.photoURL = photo.url;
+          localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+        }
       }
 
     };

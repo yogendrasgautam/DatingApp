@@ -30,7 +30,7 @@ export class AuthService {
     );
   }
 
-  register(model: any) {
+  register(model: User) {
     return this.httpClient.post(this.baseUrl + 'register', model);
   }
 
