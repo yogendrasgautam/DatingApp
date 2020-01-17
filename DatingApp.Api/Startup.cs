@@ -56,6 +56,8 @@ namespace DatingApp.Api
                         ValidateAudience=false
                     };
                 });
+
+            services.AddScoped<LogUserActivity>();
              
             
         }
