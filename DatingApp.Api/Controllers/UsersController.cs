@@ -31,7 +31,7 @@ namespace DatingApp.Api.Controllers
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var user = await _datingRepo.GetUser(currentUserId);
-            userParams.UserId = user.UserName;
+            userParams.UserId = user.Id;
             if (string.IsNullOrEmpty(userParams.Gender))
             {
                 userParams.Gender = user.Gender == "male" ? "female" : "male";
@@ -59,7 +59,7 @@ namespace DatingApp.Api.Controllers
             var userFromRepo = await _datingRepo.GetUser(id);
             _mapper.Map(UserUpdateDto, userFromRepo);
 
-            if (await _datingRepo.SaveAll())
+            if (await _datingRepo.SaveAll())  
                 return NoContent();
 
             throw new Exception($"Updating user with id {id} failled.");

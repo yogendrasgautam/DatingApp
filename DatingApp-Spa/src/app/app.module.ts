@@ -31,6 +31,7 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes-gu
 import { AuthGuard } from './_guards/auth.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { ListResolver } from './_resolvers/list.resolver';
 
 
 
@@ -89,6 +90,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      ListResolver,
       AuthGuard,
       PreventUnsavedChangesGuard,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }

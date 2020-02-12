@@ -40,15 +40,18 @@ namespace DatingApp.Api.Data
         public async   Task<PagedList<User>> GetUsers(UserParams userParams)
         {
             var users = _context.Users.Include(p=> p.Photos).OrderByDescending(u => u.LastActive).AsQueryable();
-            users = users.Where(u => u.UserName != userParams.UserId);
+            users = users.Where(u => u.Id != userParams.UserId);
             users = users.Where(u => u.Gender == userParams.Gender);
             if(userParams.Likees)
             {
+                var userLikeees = await GetUserLikes(userParams.UserId, userParams.Likers);
+                users = users.Where(u => userLikeees.Contains(u.Id));
 
             }
             if(userParams.Likers)
             {
-
+                var userLikers = await GetUserLikes(userParams.UserId, userParams.Likers);
+                users = users.Where(u => userLikers.Contains(u.Id));
             }
             if(userParams.MinAge !=18 || userParams.MaxAge != 99)
             {
